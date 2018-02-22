@@ -13,5 +13,9 @@ EXPOSE 8080
 # Port for SSH access to git repository (Optional)
 EXPOSE 29418
 
-CMD ["java", "-jar", "/opt/gitbucket.war"]
+ENV PORT=8080 PREFIX=/ HOST=$(hostname) GITBUCKET_HOME=/gitbucket
+
+COPY startup.sh /opt/startup.sh
+
+CMD ["/opt/startup.sh"]
 
